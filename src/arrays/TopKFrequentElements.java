@@ -5,8 +5,7 @@ import java.util.stream.Collectors;
 
 public class TopKFrequentElements {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         System.out.println("Solution1: " + Arrays.toString(topKFrequent1(new int[]
                 {
                         1, 2, 2, 2, 3, 3, 3, 3
@@ -44,13 +43,11 @@ public class TopKFrequentElements {
     }
 
     // Solution 2 - O(n + m log m)
-    public static int[] topKFrequent2(int[] nums, int k)
-    {
+    public static int[] topKFrequent2(int[] nums, int k) {
         System.out.println("Priority Queue Solution: ");
         Map<Integer, Integer> frequencies = new HashMap<>();
 
-        for (int number : nums)
-        {
+        for (int number : nums) {
             frequencies.merge(number, 1, Integer::sum);
         }
 
@@ -58,31 +55,26 @@ public class TopKFrequentElements {
         queue.addAll(frequencies.entrySet());
 
         int[] result = new int[k];
-        for (int i = 0; i < k && !queue.isEmpty(); i++)
-        {
+        for (int i = 0; i < k && !queue.isEmpty(); i++) {
             result[i] = queue.poll().getKey();
         }
         return result;
     }
 
     // Solution 3 - O(n)
-    public static int[] topKFrequent3(int[] nums, int k)
-    {
+    public static int[] topKFrequent3(int[] nums, int k) {
         System.out.println("Bucket Solution: ");
         Map<Integer, Integer> frequencies = new HashMap<>();
-        for (int number : nums)
-        {
+        for (int number : nums) {
             frequencies.merge(number, 1, Integer::sum);
         }
 
         List<List<Integer>> buckets = new ArrayList<>();
-        for (int i = 0; i <= nums.length; i++)
-        {
+        for (int i = 0; i <= nums.length; i++) {
             buckets.add(new ArrayList<>());
         }
 
-        for (Map.Entry<Integer, Integer> entry : frequencies.entrySet())
-        {
+        for (Map.Entry<Integer, Integer> entry : frequencies.entrySet()) {
             int number = entry.getKey();
             int count = entry.getValue();
             buckets.get(count).add(number);
@@ -90,10 +82,8 @@ public class TopKFrequentElements {
 
         int[] result = new int[k];
         int resultIndex = 0;
-        for (int freq = nums.length; freq >= 1 && resultIndex < k; freq--)
-        {
-            for (int number : buckets.get(freq))
-            {
+        for (int freq = nums.length; freq >= 1 && resultIndex < k; freq--) {
+            for (int number : buckets.get(freq)) {
                 result[resultIndex++] = number;
                 if (resultIndex == k)
                     break;
@@ -103,13 +93,11 @@ public class TopKFrequentElements {
     }
 
     // Solution 1 - O (n log n)
-    public static int[] topKFrequent1(int[] nums, int k)
-    {
+    public static int[] topKFrequent1(int[] nums, int k) {
         System.out.println("Frequency + Sorting based Solution: ");
         Map<Integer, Integer> numberCount = new HashMap<>();
 
-        for (int num : nums)
-        {
+        for (int num : nums) {
             if (numberCount.containsKey(num))
                 numberCount.put(num, numberCount.get(num) + 1);
             else
@@ -122,8 +110,7 @@ public class TopKFrequentElements {
                 .map(Map.Entry::getKey).toList();
 
         int[] result = new int[k];
-        for (int i = 0; i < k; i++)
-        {
+        for (int i = 0; i < k; i++) {
             result[i] = sortedNumbers.get(i);
         }
         return result;
