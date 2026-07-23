@@ -1,7 +1,6 @@
-package arrays;
+package mediumproblems;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class TopKFrequentElements {
 

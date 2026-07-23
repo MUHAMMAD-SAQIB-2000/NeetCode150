@@ -1,4 +1,4 @@
-package arrays;
+package mediumproblems;
 
 import java.util.ArrayList;
 import java.util.List;
