@@ -32,7 +32,7 @@ public class BestTimeToBuyAndSellStock {
             int profit = futurePrice - minBuyingPrice;
 
             if (profit > sellingProfit)
-                sellingProfit = profit; // This way we always keep track of highest profit earned in future.
+                sellingProfit = profit; // This way we always keep track of highest profit earned in the future.
 
             if (futurePrice < minBuyingPrice)
                 minBuyingPrice = futurePrice; // here we know what could have been the minimum on which we have bought
