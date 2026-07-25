@@ -37,6 +37,6 @@ public class ValidParentheses {
                 if (bracketsStack.isEmpty() || bracketsStack.pop() != pairs.get(bracket)) return false;
             }
         }
-        return true;
+        return bracketsStack.isEmpty();
     }
 }
