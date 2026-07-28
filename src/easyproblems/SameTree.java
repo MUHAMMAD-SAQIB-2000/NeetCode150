@@ -64,7 +64,8 @@ public class SameTree {
         System.out.println("Test Case 4: " + isSameTree(p4, q4) + ", Expected: false");
     }
 
-    public static boolean isSameTree(TreeNode p, TreeNode q) {
+    // Solution - Time: O(n), Space: O(n)
+    public static boolean isSameTreeIterative(TreeNode p, TreeNode q) {
         Stack<TreeNode> pTree = new Stack<>();
         Stack<TreeNode> qTree = new Stack<>();
 
@@ -94,6 +95,15 @@ public class SameTree {
         }
 
         return pTree.isEmpty() && qTree.isEmpty();
+    }
+
+    // Solution: Time: O(n), Space: O(h)
+    public static boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p == null && q == null) return true;
+        if(p == null || q == null) return false;
+        if(p.val != q.val) return false;
+
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 
 }
