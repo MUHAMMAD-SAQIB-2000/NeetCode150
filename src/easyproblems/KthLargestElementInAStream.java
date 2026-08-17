@@ -33,12 +33,12 @@ public class KthLargestElementInAStream {
 
         // Solution - O(mlogk) time, O(k) space
         public int add(int val) {
-            if (val > minHeap.peek()){
+            if (minHeap.size() < k) {
+                minHeap.add(val);
+            } else if (val > minHeap.peek()) {
                 minHeap.poll();
                 minHeap.add(val);
             }
-
-//            System.out.println("Size: " + minHeap.size() + " - heap: " + minHeap);
             return minHeap.peek();
         }
     }
